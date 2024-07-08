@@ -68,7 +68,7 @@ describe('Member Service', () => {
     const memberId = 1;
     const bookId = 1;
     const mockMember = { member_id: 1, is_penalized: false };
-    const mockBook = { book_id: 1, quantity: 0 };
+    const mockBook = { book_id: 1, stock: 0 };
 
     memberRepository.getMemberById.mockResolvedValue(mockMember);
     transactionRepository.getBorrowedBooksByMember.mockResolvedValue([]);
