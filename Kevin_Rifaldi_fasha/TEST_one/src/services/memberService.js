@@ -18,7 +18,7 @@ exports.borrowBook = async (memberId, bookId) => {
   }
 
   const book = await bookRepository.getBookById(bookId);
-  if (book.quantity <= 0) {
+  if (book.stock <= 0) {
     throw new Error('Book is not available');
   }
 
