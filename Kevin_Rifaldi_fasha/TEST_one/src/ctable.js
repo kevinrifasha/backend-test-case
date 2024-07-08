@@ -57,9 +57,7 @@ CREATE TABLE IF NOT EXISTS Books (
 CREATE TABLE IF NOT EXISTS Transactions (
     transaction_id SERIAL PRIMARY KEY,
     member_id INT NOT NULL,
-    member_code VARCHAR(50) NOT NULL,
     book_id INT NOT NULL,
-    book_code VARCHAR(50) NOT NULL,
     borrow_date DATE NOT NULL,
     return_date DATE,
     FOREIGN KEY (member_id) REFERENCES Members(member_id),
