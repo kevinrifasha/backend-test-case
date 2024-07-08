@@ -11,9 +11,9 @@ exports.getActiveTransaction = async (memberId, bookId) => {
 };
 
 exports.createTransaction = async (memberId, bookId) => {
-  await pool.query('INSERT INTO Transactions (member_id, book_id, borrow_date) VALUES ($1, $2, CURRENT_DATE)', [memberId, bookId]);
-};
-
+    await pool.query('INSERT INTO Transactions (member_id, book_id, borrow_date,return_date) VALUES ($1, $2, CURRENT_DATE,CURRENT_DATE + INTERVAL \'30 days\')', [memberId, bookId]);
+  };
+  
 exports.updateTransactionReturnDate = async (transactionId) => {
   await pool.query('UPDATE Transactions SET return_date = CURRENT_DATE WHERE transaction_id = $1', [transactionId]);
 };
