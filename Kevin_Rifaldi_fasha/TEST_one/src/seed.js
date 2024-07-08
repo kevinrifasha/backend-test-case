@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Pool } = require('pg');
 
-const rawData = fs.readFileSync('./seed_data.json');
+const rawData = fs.readFileSync('./src/seed_data.json');
 const seedData = JSON.parse(rawData);
 
 const pool = new Pool({
