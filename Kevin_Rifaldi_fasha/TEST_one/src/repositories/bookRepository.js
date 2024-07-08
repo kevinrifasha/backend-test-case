@@ -1,7 +1,7 @@
 const pool = require('../config/db');
 
 exports.getAllBooks = async () => {
-  const res = await pool.query('SELECT * FROM Books');
+  const res = await pool.query('SELECT * FROM Books WHERE stock > 0');
   return res.rows;
 };
 
