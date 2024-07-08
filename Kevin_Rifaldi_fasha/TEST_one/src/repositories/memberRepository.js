@@ -3,12 +3,23 @@ const pool = require('../config/db');
 exports.getAllMembers = async () => {
 //   const res = await pool.query('SELECT * FROM Members');
 const res = await pool.query(`
-    SELECT m.name, 
-           json_agg(json_build_object('book_id', b.book_id, 'book_title', b.title, 'borrowed_date', t.borrow_date, 'return_date', t.return_date)) AS borrowed_books
-    FROM Members m
-    LEFT JOIN Transactions t ON m.member_id = t.member_id
-    LEFT JOIN Books b ON t.book_id = b.book_id
-    GROUP BY m.member_id
+    SELECT 
+    m.name, 
+    COUNT(b.book_id) AS borrowed_books_quantity,
+    json_agg(json_build_object(
+        'book_id', b.book_id, 
+        'book_title', b.title, 
+        'borrowed_date', t.borrow_date, 
+        'return_date', t.return_date
+    )) AS borrowed_books
+FROM 
+    Members m
+LEFT JOIN 
+    Transactions t ON m.member_id = t.member_id
+LEFT JOIN 
+    Books b ON t.book_id = b.book_id
+GROUP BY 
+    m.member_id, m.name;
   `);  
 return res.rows;
 };
