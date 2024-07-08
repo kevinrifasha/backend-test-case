@@ -1,4 +1,3 @@
-To create a `documentation.md` file that provides detailed instructions for running your application, you can outline steps including prerequisites, installation, configuration, and starting the application. Here’s a template you can use:
 
 ### Application Documentation
 
